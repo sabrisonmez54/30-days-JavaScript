@@ -28,19 +28,19 @@
 
     :root{
       --base: #000;
-      --spacing:10px;
+      --spacing: 10px;
       --blur: 10px;
     }
 
     img{
       padding: var(--spacing);
-      background: var(var(--base));
+      background: var(--base);
       filter: blur(var(--blur));
 
     }
 
     .hl{
-      color: var(--spacing);
+      color: var(--base);
     }
 
     body {
@@ -65,7 +65,8 @@
     const inputs = document.querySelectorAll('.controls input')
 
     function handleUpdate() {
-      console.log(this.value);
+      const suffix = this.dataset.sizing || ''; //or nothing
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
     }
 
     inputs.forEach(input => input.addEventListener('change', handleUpdate));
